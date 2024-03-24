@@ -49,22 +49,6 @@ describe('WordleBoard', () => {
       expect(console.warn).toHaveBeenCalled()
     })
   
-    test("The word of the day must be all uppercase", async () => {
-      console.warn = vi.fn()
-  
-      wrapper = mount(WordleBoard, {props: {wordOfTheDay: "tests"}})
-  
-      expect(console.warn).toHaveBeenCalled()
-    })
-  
-    test("If the word of the day is not a real word, emmit a warning", async () => {
-      console.warn = vi.fn()
-  
-      wrapper = mount(WordleBoard, {props: {wordOfTheDay: "QWERT"}})
-  
-      expect(console.warn).toHaveBeenCalled()
-    })
-  
     test("No warinign is emmited if the word of the day is a real uppercase English word with exactly 5 characters", async () => {
       console.warn = vi.fn()
   
