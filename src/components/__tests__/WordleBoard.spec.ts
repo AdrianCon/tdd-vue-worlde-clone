@@ -38,8 +38,8 @@ describe('WordleBoard', () => {
   })
 
   test("If a word of the day provided does not have exactly 5 characters, an error message appears", async () => {
-    vi.spyOn(console, 'warn')
-
+    console.warn = vi.fn()
+    
     // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "TEST"}})
 
