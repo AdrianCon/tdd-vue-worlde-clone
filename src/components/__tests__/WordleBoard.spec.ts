@@ -56,4 +56,14 @@ describe('WordleBoard', () => {
     // Assert phase
     expect(console.warn).toHaveBeenCalled()
   })
+
+  test("If the word of the day is not a real word, emmit a warning", async () => {
+    console.warn = vi.fn()
+
+    // Arrange phase
+    wrapper = mount(WordleBoard, {props: {wordOfTheDay: "QWERT"}})
+
+    // Assert phase
+    expect(console.warn).toHaveBeenCalled()
+  })
 })
