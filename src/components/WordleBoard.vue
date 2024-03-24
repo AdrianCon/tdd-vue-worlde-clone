@@ -7,9 +7,7 @@ defineProps({
   wordOfTheDay: {
     type: String,
     required: true,
-    validator: (value: string) => value.length === 5
-      && value.toUpperCase() === value
-      && englishWords.includes(value)
+    validator: (value: string) => englishWords.includes(value)
   }
 })
 
