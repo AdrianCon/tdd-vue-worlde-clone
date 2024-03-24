@@ -66,4 +66,14 @@ describe('WordleBoard', () => {
     // Assert phase
     expect(console.warn).toHaveBeenCalled()
   })
+
+  test("No warinign is emmited if the word of the day is a real uppercase English word with exactly 5 characters", async () => {
+    console.warn = vi.fn()
+
+    // Arrange phase
+    wrapper = mount(WordleBoard, {props: {wordOfTheDay: "TESTS"}})
+
+    // Assert phase
+    expect(console.warn).not.toHaveBeenCalled()
+  })
 })
