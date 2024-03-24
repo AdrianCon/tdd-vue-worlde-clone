@@ -39,9 +39,19 @@ describe('WordleBoard', () => {
 
   test("If a word of the day provided does not have exactly 5 characters, an error message appears", async () => {
     console.warn = vi.fn()
-    
+
     // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "TEST"}})
+
+    // Assert phase
+    expect(console.warn).toHaveBeenCalled()
+  })
+
+  test("The word of the day must be all uppercase", async () => {
+    console.warn = vi.fn()
+
+    // Arrange phase
+    wrapper = mount(WordleBoard, {props: {wordOfTheDay: "tests"}})
 
     // Assert phase
     expect(console.warn).toHaveBeenCalled()
