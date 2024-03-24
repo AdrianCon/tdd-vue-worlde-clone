@@ -16,23 +16,18 @@ describe('WordleBoard', () => {
   }
 
   test('A victory message appears when the user makes a guess that matches the word of the day', async () => {
-    // Act phase
     await playerSubmitsGuess(wordOfTheDay)
 
-    // Assert phase
     expect(wrapper.text()).toContain(VICTORY_MESSAGE)
   })
 
   test("A defeat message appears if the user makes a guess that is incorrrect", async () => {
-    // Act phase
     await playerSubmitsGuess('WRONG')
 
-    // Assert phase
     expect(wrapper.text()).toContain(DEFEAT_MESSAGE)
   })
 
   test("No end-of-game appears if the user has not yet made a guess", async () => {
-    // Assert phase
     expect(wrapper.text()).not.toContain(VICTORY_MESSAGE)
     expect(wrapper.text()).not.toContain(DEFEAT_MESSAGE)
   })
@@ -40,40 +35,32 @@ describe('WordleBoard', () => {
   test("If a word of the day provided does not have exactly 5 characters, an error message appears", async () => {
     console.warn = vi.fn()
 
-    // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "TEST"}})
 
-    // Assert phase
     expect(console.warn).toHaveBeenCalled()
   })
 
   test("The word of the day must be all uppercase", async () => {
     console.warn = vi.fn()
 
-    // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "tests"}})
 
-    // Assert phase
     expect(console.warn).toHaveBeenCalled()
   })
 
   test("If the word of the day is not a real word, emmit a warning", async () => {
     console.warn = vi.fn()
 
-    // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "QWERT"}})
 
-    // Assert phase
     expect(console.warn).toHaveBeenCalled()
   })
 
   test("No warinign is emmited if the word of the day is a real uppercase English word with exactly 5 characters", async () => {
     console.warn = vi.fn()
 
-    // Arrange phase
     wrapper = mount(WordleBoard, {props: {wordOfTheDay: "TESTS"}})
 
-    // Assert phase
     expect(console.warn).not.toHaveBeenCalled()
   })
 })
