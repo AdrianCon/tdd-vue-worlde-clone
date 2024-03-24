@@ -2,9 +2,11 @@
 defineProps<{
   wordOfTheDay: string
 }>()
+
+import { VICTORY_MESSAGE } from '../settings'
 </script>
 
 <template>
   <input type="text"/>
-  <p>You won!</p>
+  <p>{{ VICTORY_MESSAGE }}</p>
 </template>
