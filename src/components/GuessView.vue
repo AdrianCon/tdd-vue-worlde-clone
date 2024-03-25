@@ -12,7 +12,7 @@ const props = defineProps({
   },
 })
 
-function getFeedback(letterPosition: number) {
+function getFeedback(letterPosition: number): null | "correct" | "incorrect" | "almost"{
   if (!props.answer) return null
 
   return props.answer[letterPosition] === props.guess[letterPosition]
