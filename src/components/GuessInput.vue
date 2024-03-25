@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { DEFEAT_MESSAGE, VICTORY_MESSAGE, WORD_SIZE } from "@/settings"
+import { WORD_SIZE } from "@/settings"
 import englishWords from "@/englishWordsWith5Letters.json"
 import { computed, ref } from "vue"
 import GuessView from "./GuessView.vue";
+
+withDefaults(defineProps<{disabled?: boolean}>(), {
+  disabled: false
+})
 
 const guessInProgress = ref<string | null>(null)
 const emit = defineEmits<{
@@ -34,10 +38,11 @@ function onSubmit() {
 </script>
 
 <template>
-  <GuessView :guess="formattedGuessInProgress" />
+  <GuessView v-if="!disabled" :guess="formattedGuessInProgress" />
   <input
     v-model="formattedGuessInProgress"
     :maxlength="WORD_SIZE"
+    :disabled="disabled"
     autofocus
     @blur="({ target }) => (target as HTMLInputElement).focus()"
     type="text"
