@@ -58,6 +58,16 @@ describe('WordleBoard', () => {
   })
 
   describe("Player input", () => {
+    test("Remains in focus the entire time", async () => { 
+      document.body.innerHTML = '<div id="app"></div>'
+      wrapper = mount(WordleBoard, { props: { wordOfTheDay }, attachTo: '#app' })
+      
+      expect(wrapper.find("input[type=text]").attributes("autofocus")).not.toBeUndefined()
+
+      await wrapper.find("input[type=text]").trigger("blur")
+      expect(document.activeElement).toBe(wrapper.find("input[type=text]").element)
+    })
+
     test("Player guesses are limited to 5 letters", async () => { 
       await playerSubmitsGuess(wordOfTheDay + 'EXTRA')
       expect(wrapper.text()).toContain(VICTORY_MESSAGE)
