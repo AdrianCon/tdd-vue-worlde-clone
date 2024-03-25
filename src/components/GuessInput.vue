@@ -2,6 +2,7 @@
 import { DEFEAT_MESSAGE, VICTORY_MESSAGE, WORD_SIZE } from "@/settings"
 import englishWords from "@/englishWordsWith5Letters.json"
 import { computed, ref } from "vue"
+import GuessView from "./GuessView.vue";
 
 const guessInProgress = ref<string | null>(null)
 const emit = defineEmits<{
@@ -33,15 +34,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <ul class="word">
-    <li
-      v-for="(letter, index) in formattedGuessInProgress.padEnd(WORD_SIZE, ' ') "
-      :key="`${letter}-${index}`"
-      :data-letter="letter"
-      class="letter"
-      v-text="letter"
-    />
-  </ul>
+  <GuessView :guess="formattedGuessInProgress" />
   <input
     v-model="formattedGuessInProgress"
     :maxlength="WORD_SIZE"
