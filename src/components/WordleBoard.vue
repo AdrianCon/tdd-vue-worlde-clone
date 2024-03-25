@@ -16,7 +16,7 @@ const guessSubmitted = ref("")
 
 const formattedGuessInProgress = computed({
   get: () => guessInProgress.value,
-  set: (rawValue: string) => guessInProgress.value = rawValue.slice(0,WORD_SIZE)
+  set: (rawValue: string) => guessInProgress.value = rawValue.slice(0,WORD_SIZE).toUpperCase()
 })
 
 function onSubmit() {
