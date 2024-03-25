@@ -18,6 +18,11 @@ const formattedGuessInProgress = computed({
   get: () => guessInProgress.value,
   set: (rawValue: string) => guessInProgress.value = rawValue.slice(0,WORD_SIZE)
 })
+
+function onSubmit() {
+  if(!englishWords.includes(guessInProgress.value)) return
+  guessSubmitted.value = guessInProgress.value
+}
 </script>
 
 <template>
@@ -25,7 +30,7 @@ const formattedGuessInProgress = computed({
     type="text"
     :maxlength="WORD_SIZE"
     v-model="formattedGuessInProgress"
-    @keydown.enter="guessSubmitted = guessInProgress" 
+    @keydown.enter="onSubmit" 
   />
   <p v-if="guessSubmitted.length > 0" v-text="guessSubmitted === wordOfTheDay ? VICTORY_MESSAGE : DEFEAT_MESSAGE" />
 </template>
