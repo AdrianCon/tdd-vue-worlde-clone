@@ -15,9 +15,13 @@ const props = defineProps({
 function getFeedback(letterPosition: number): null | "correct" | "incorrect" | "almost"{
   if (!props.answer) return null
 
-  if (!props.answer.includes(props.guess[letterPosition])) return "incorrect"
 
-  return props.answer[letterPosition] === props.guess[letterPosition]
+  const letterGuessed = props.guess[letterPosition]
+  const letterExpected = props.answer[letterPosition]
+
+  if (!props.answer.includes(letterGuessed)) return "incorrect"
+
+  return letterGuessed === letterExpected
     ? "correct"
     : "almost"
 }
